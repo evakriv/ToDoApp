@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To do App</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="main.js" defer></script>
+    <script src="https://kit.fontawesome.com/96f3e26a57.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div class="app">
+        <h1>To Do App</h1>
+        <div id="addNew">
+            <p>Add New Task <i id="formOpen" class="fas fa-plus"></i></p>
+        </div>
+        <h2 class="tasksTitle">Tasks</h2>
+        <div class="tasks">
+        </div>`
+        </div>
+    </div>
+    </div>
+    <div class="overlay hidden"></div>
+    <!--inputField-->
+    <div class="wrapper">
+        <form id="form" action="">
+            <div id="line-decoration">l</div>
+            <h1 id="form-header">Add New Task</h1>
+            <h2>Task title</h2>
+            <label for="title"></label>
+            <input type="text" name="title" id="taskName">
+            <p id="msg"></p>
+            <h2>Due Date</h2>
+            <label for="dueDate"></label>
+            <input type="date" name="dueDate" id="date"> 
+            <fieldset>
+                <legend> Mark the importance of the task</legend>
+                <div class="radioBtns">
+                    <label for="high">High
+                    <input type="radio" name="importance" value="high" id="high"></label>
+
+                    <label for="medium">Medium
+                    <input type="radio" name="importance" value="medium" id="medium"></label>
+
+                    <Label for="low">Low <input type="radio" name="importance" value="low" id="low"> </Label>
+
+                </div>
+            </fieldset>
+            <label for="description"></label>
+            <h2>Description</h2>
+            <textarea name="description" id="description" cols="30" rows="10"></textarea>
+            <div class="btns">
+                <button type="submit" id="btnAdd">ADD</button>
+                <button class="closeForm">CLOSE</button>
+            </div>
+        </form>
+    </div>
+
+
+
+
+
+
+
+</body>
+
+</html>
