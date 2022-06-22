@@ -32,7 +32,7 @@ let storeTasks = [];
                 <i id ='trashBtn' class="fa-solid fa-trash "></i>
          </div>` 
             myTasks.insertAdjacentHTML('beforeend', html);
-
+   
          });
     }})
 
