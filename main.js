@@ -11,7 +11,6 @@ const myTasks = document.querySelector('.tasks');
 const closeBtn = document.querySelector('.closeForm');
 const overlay = document.querySelector('.overlay');
 const removeBtn = document.querySelector('#trashBtn');
-console.log(overlay);
 const radioBtninput = document.getElementsByName('importance');
 const checkbox= document.querySelector('.radioBtns')
 
@@ -24,15 +23,7 @@ let storeTasks = [];
     }
     else {
         storeTasks.forEach(el => {
-            const html = ` 
-            <div id =${el.id} class = 'task-item' style ='border:${el.importance}'>
-                <h2>${el.name}</h2>
-                 <p>${el.date}</p>
-                <p>${el.description}</p>
-                <i id ='trashBtn' class="fa-solid fa-trash "></i>
-         </div>` 
-            myTasks.insertAdjacentHTML('beforeend', html);
-   
+            Task.prototype.generateHtmlElement(el);   
          });
     }})
 
@@ -45,11 +36,11 @@ class Task {
         this.importance = importance;
         this.id = Math.floor(Math.random()*10000);  
     }
-    generateHtmlElement(){
-        let html=`<div id =${this.id} class = 'task-item' style ='border:${this.importance}'>
-        <h2>${this.name}</h2>
-        <p>${this.date}</p>
-        <p>${this.description}</p>
+    generateHtmlElement(task){
+        let html=`<div id =${task.id} class = 'task-item' style ='border:${task.importance}'>
+        <h2>${task.name}</h2>
+        <p>${task.date}</p>
+        <p>${task.description}</p>
         <i id ='trashBtn' class="fa-solid fa-trash"></i>
     </div>` 
     myTasks.insertAdjacentHTML('beforeend', html);
@@ -65,15 +56,15 @@ const formFrameManipulation = display =>{
 //taking input value and presenting them in the app
 
 const takeInput = function () {
-    let task = new Task(taskName.value,date.value,description.value,checkboxValue); 
+    let task = new Task(taskName.value,date.value,description.value,taskBorder); 
     storeTasks.push(task); 
     localStorage.setItem('storeTasks', JSON.stringify(storeTasks));
-    task.generateHtmlElement(); 
+    task.generateHtmlElement(task); 
     formFrameManipulation('none');
 }
-//removing items from UI and storage
+// //removing items from UI and storage
 myTasks.addEventListener('click', function (e){
-    if (e.target === document.querySelector('#trashBtn')) { 
+    if (e.target.id ==='trashBtn') { 
         let clicked= e.target.parentElement.id;
         storeTasks.map((item,i)=>{
             if(item.id == clicked){
@@ -84,14 +75,15 @@ myTasks.addEventListener('click', function (e){
         e.target.parentElement.remove();
     }
 })
-//getting checkboxvalue
-let checkboxValue;//this is the importance property
+//getting taskBorder
+let taskBorder;//this is the importance property
 checkbox.addEventListener('click', e=>{
     checkbox.value = e.target.getAttribute('for')|| e.target.value;
     if(checkbox.value ==='high'){
-        checkboxValue= 'solid 5px rgb(160, 48, 48)'
+        taskBorder= 'solid 5px rgb(160, 48, 48)'
     }else if(checkbox.value ==='medium'){
-        checkboxValue= 'solid 5px rgb(211, 134, 46)'}
+        taskBorder= 'solid 5px rgb(211, 134, 46)'}
+    else if(checkbox.value ==='low'){ taskBorder= 'solid 5px rgb(0, 0, 0)'}
     })
        
 //form submit
@@ -101,16 +93,15 @@ form.addEventListener('submit', function (e) {
 //FORM VALIDATION
 const formValidation =()=>{
     taskName.value ===''?
-      message.textContent ='task field cannot be blank'
+      message.textContent ='Task field cannot be blank!'
     : takeInput();  
     formReset()
 }
 
 addBtn.addEventListener('click',formValidation);
 
-//UI interference
-//for opening the form
 
+//for opening the form
 openForm.addEventListener('click', () => {
     formFrameManipulation('block')
 });
@@ -130,3 +121,4 @@ function formReset(){
 //disabeling old date selection in the date input field
 let today = new Date().toISOString().split('T')[0];
 date.setAttribute('min', today);
+

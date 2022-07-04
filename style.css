@@ -22,7 +22,11 @@ body {
     align-items: center;
     height: 100vh;
   }
-
+  ::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+  }
+ 
   .app{
       background-color: var(--app-background-color);
       border-radius: 10px;
@@ -31,6 +35,7 @@ body {
       text-align: center;
       color:rgb(209, 195, 195);
       box-shadow: 5px 5px 1x 5px rgb(173, 56, 156);
+      overflow-y: scroll;
      
     
   }
@@ -127,13 +132,11 @@ textarea{
 }
 /*overlay*/
 .overlay{
-    position: absolute;
-    width:100vw;
-    height:auto;
+    position: fixed;
+    width:100%;
+    height:100%;
     background-color: rgba(0,0,0,0.7);
     z-index: 10;
-    bottom: 0;
-  
 }
 .hidden{
     display: none;
@@ -173,11 +176,11 @@ textarea{
     .app{min-width: 60%}
 }
 @media screen and (max-width:600px){
-.app{min-width: 90%;
-
+.app{min-width: 90%;}
 }
 @media screen and (max-width:400px){
     .fas,.fa-plus{ margin-top: 10px;
 }
     #addNew{padding: 2px;
+}
 }
